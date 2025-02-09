@@ -1,0 +1,204 @@
+
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+
+  }
+
+
+  .falling-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* Icons won’t interfere with interactions */
+  }
+  
+  /* Movie icon style */
+  .movie-icon {
+    position: absolute;
+    font-size: 3rem;
+    color: rgba(2, 1, 1, 0.56); /* White with slight transparency */
+    opacity: 0;
+    animation: fall 5s linear infinite, fadeInOut 5s infinite;
+  }
+  
+  /* Animation for falling effect */
+  @keyframes fall {
+    0% {
+      transform: translateY(-100px) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg); /* Falling to the bottom */
+      opacity: 0;
+    }
+  }
+  
+  /* Animation for fading in and out */
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+    }
+    20%, 80% {
+      opacity: 1;
+    }
+  }
+  
+  /* Random positioning for each icon */
+  .movie-icon:nth-child(1) {
+    animation-delay: 0s, 0s;
+    left: 10%;
+  }
+  .movie-icon:nth-child(2) {
+    animation-delay: 1s, 1s;
+    left: 25%;
+  }
+  .movie-icon:nth-child(3) {
+    animation-delay: 2s, 2s;
+    left: 35%;
+  }
+  .movie-icon:nth-child(4) {
+    animation-delay: 3s, 3s;
+    left: 45%;
+  }
+
+  .navbar1 {
+    position: fixed;
+    top: 0;
+    left: 470px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Transparent black background */
+    padding: 15px;
+    z-index: 1000; /* Ensures navbar is above content */
+  }
+  
+  .navbar1 ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar1 li {
+    margin: 0 15px;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .nav-link:hover {
+    background-color: rgba(226, 29, 190, 0.436);
+    color: #c134fd; /* Change to your desired hover color */
+  }
+ 
+  .home h1 {
+    font-size: 4rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+    color: hsl(0, 20%, 1%);
+  }
+  
+  .home p {
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 30px;
+    color: #080404;
+  }
+  
+  .buttons {
+    display: flex;
+    border: 5px solid transparent;
+    background-clip: padding-box; 
+
+    gap: 20px
+  }
+  
+  
+  
+  .home-btn:hover {
+    background-color: hsl(319, 98%, 50%);
+  }
+
+  .type-bar-container {
+    display: flex;
+    flex-direction: column; /* Stack the input and button vertically */
+    align-items: center; /* Center align the input and button */
+    justify-content: center; /* Center the content vertically */
+    width: 700px;
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px;
+    font-size: 16px;
+    border: 6px solid black;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(194, 2, 2, 0.622);
+    background: transparent;
+  }
+  
+  /* Style for the input field */
+  .type-bar-container input {
+    border: none;
+    background: transparent; /* Transparent input field */
+    color: black; /* Black text color */
+    font-size: 16px;
+    padding: 5px;
+    outline: none; /* Remove green outline */
+    width: 100%; /* Ensure input takes up full width */
+    margin-bottom: 10px; /* Add some space below the input */
+  }
+  
+  /* Placeholder text styling */
+  .type-bar-container input::placeholder {
+    color: rgba(0, 0, 0, 0.5); /* Semi-transparent placeholder */
+    font-style: italic;
+  }
+  
+  /* Prevent green border on focus */
+  .type-bar-container input:focus {
+    outline: none; /* Remove default focus outline */
+    border: none; /* Remove focus border */
+  }
+  
+  /* Style for the submit button */
+  .submit-button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049; /* Hover effect */
+  }
+  
+  .message {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #030006; /* Highlight color */
+    font-weight: bold;
+    text-align: center;
+  }
+  

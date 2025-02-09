@@ -1,0 +1,89 @@
+/* Container for the grid layout */
+/* Container for the grid layout */
+.favorite-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Makes it responsive */
+  gap: 20px; /* Space between the cards */
+  padding: 20px;
+}
+
+/* Individual card styles */
+.favorite-card {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  overflow: hidden; /* Prevents overflow of content */
+  display: flex;
+  flex-direction: column; /* Ensures that the title, image, and overview are stacked vertically */
+  justify-content: space-between;
+}
+
+/* Image styling */
+.movie-image {
+  width: 100%; /* Ensures image takes the full width of the card */
+  height: 200px; /* Constrains the image height */
+  object-fit: contain; /* Ensures the image fits within the specified dimensions */
+  margin-bottom: 10px; /* Adds space below the image */
+}
+
+.favorite-card:hover .movie-image {
+  transform: scale(1.1); /* Zoom in by 10% */
+}
+
+.favorite-card:hover {
+  transform: translateY(-10px); /* Lift the card slightly on hover */
+}
+
+/* Movie title styling */
+h2{
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 40px;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 10px;
+
+}
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Handles long titles */
+  white-space: nowrap; /* Prevents title from breaking into multiple lines */
+}
+.recommendations{
+  top: 20px;
+  right: 20px;
+  background-color: rgb(195, 17, 76);
+  text-decoration: wavy;
+  font-family:cursive;
+  position: absolute;
+  padding: 10px 15px;
+  width: 15%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+}
+
+
+/* Overview styling */
+p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Handles long text */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limits the text to 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+.unfavorite-btn{
+  background-color: #f0f0f002;
+}
+.unfavorite-btn:hover{
+  background-color: red;
+}

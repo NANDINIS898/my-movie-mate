@@ -1,0 +1,32 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /* Centering content */
+  body{
+    text-align: center;
+    justify-content: center;
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color: #61dafb;
+  }
+  
+  button {
+    background-color: #a91af0;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #21a1f1;
+  }
+  
+  
