@@ -3,7 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 const express = require('express');
 const jwt = require('jsonwebtoken');
-
+const mysql= require('mysql2');
 const app = express();
 const port = process.env.PORT ||5000;
 const SECRET_KEY = '343477';
@@ -13,6 +13,21 @@ app.use(cors());
 
 const TMDB_API_KEY = '482956122a3f6909e6d22e014cefece3';
 const BASE_URL = 'https://api.themoviedb.org/3';
+
+// Database connection
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root', // Update with your DB username
+  password: 'Nandini9958G.7', // Update with your DB password
+  database: 'movie_app' // Update with your DB name
+});
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to MySQL database.');
+});
 
 // Route to get movie recommendations with genres
 app.get('/api/movies/:genreId', async (req, res) => {
