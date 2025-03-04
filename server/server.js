@@ -1,19 +1,18 @@
-
+require('dotenv').config(); // Ensure environment variables are loaded
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
-const express = require('express');
 const jwt = require('jsonwebtoken');
 const mysql= require('mysql2');
 const app = express();
-const port = process.env.PORT ||5000;
-const SECRET_KEY = '343477';
+const port = process.env.PORT || 5000;
+const SECRET_KEY =process.env.SECRET_KEY || '343477';
 
 app.use(cors());
 
 
-const TMDB_API_KEY = '482956122a3f6909e6d22e014cefece3';
-const BASE_URL = 'https://api.themoviedb.org/3';
+const TMDB_API_KEY = process.env.TMDB_API_KEY ||'482956122a3f6909e6d22e014cefece3';
+const BASE_URL ='https://api.themoviedb.org/3';
 
 // Database connection
 const urldb=`mysql://root:MAGQPtlqsrwKRkezkweagRtaGomJRtjp@mysql.railway.internal:3306/railway`
@@ -26,6 +25,21 @@ db.connect((err) => {
   }
   console.log('Connected to MySQL database.');
 });
+
+// Middleware for authentication (Define it or remove it)
+function authenticateToken(req, res, next) {
+  const token = req.headers.authorization?.split(' ')[1]; // Extract token
+  if (!token) return res.status(401).json({ message: 'Access Denied' });
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.status(403).json({ message: 'Invalid Token' });
+
+    req.user = user;
+    next();
+  });
+}
+
+
 
 // Route to get movie recommendations with genres
 app.get('/api/movies/:genreId', async (req, res) => {
