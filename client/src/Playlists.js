@@ -24,7 +24,7 @@ const Playlists = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get('http://localhost:5000/api/playlists', {
+            const response = await axios.get('https://movie-mate-production.up.railway.app/api/playlists', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -81,7 +81,7 @@ const Playlists = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/api/playlists', playlistData, {
+            const response = await axios.post('https://movie-mate-production.up.railway.app/api/playlists', playlistData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -101,7 +101,7 @@ const Playlists = () => {
     // Handle deleting a playlist
     const handleDeletePlaylist = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/playlists/${id}`, {
+            await axios.delete(`https://movie-mate-production.up.railway.app/api/playlists/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

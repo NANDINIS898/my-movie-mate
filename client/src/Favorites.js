@@ -12,7 +12,7 @@ function Favorites({ token }) {
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/favorites`, {
+        const response = await axios.get(`https://movie-mate-production.up.railway.app/api/favorites`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log(response.data);  
@@ -35,7 +35,7 @@ function Favorites({ token }) {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/favorites/${movieId}`, {
+      await axios.delete(`https://movie-mate-production.up.railway.app/api/favorites/${movieId}`, {
         headers: {
           Authorization: `Bearer ${token}`, // Send token in Authorization header
         },

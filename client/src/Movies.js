@@ -21,7 +21,7 @@ function Movies() {
   // Fetch movies whenever the selected genre changes
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/movies/${genre}`, {
+      .get(`https://movie-mate-production.up.railway.app/api/movies/${genre}`, {
         headers: { Authorization: `Bearer ${token}` }, // Include token
       })
       .then((response) => setMovies(response.data))
@@ -39,7 +39,7 @@ function Movies() {
     
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/favorites`,
+        `https://movie-mate-production.up.railway.app/api/favorites`,
         {
           movieId: id,
           title: title,
