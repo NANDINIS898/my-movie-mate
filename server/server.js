@@ -22,6 +22,7 @@ const pool = new Pool({
 });
 
 // TEMPORARY: Initialize DB tables on deployment
+/*
 app.get('/init-db', async (req, res) => {
   try {
     await pool.query(`
@@ -55,6 +56,7 @@ app.get('/init-db', async (req, res) => {
     res.status(500).send('❌ Failed to initialize database.');
   }
 });
+*/
 
 // Authentication middleware
 function authenticateToken(req, res, next) {
