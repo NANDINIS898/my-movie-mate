@@ -7,6 +7,7 @@ const { Pool } = require('pg'); // PostgreSQL client
 const app = express();
 const port = process.env.PORT || 5000;
 const SECRET_KEY = process.env.SECRET_KEY || '343477';
+const bcrypt = require('bcrypt');
 
 app.use(cors());
 app.use(express.json());
@@ -66,7 +67,7 @@ function authenticateToken(req, res, next) {
     next();
   });
 }
-const bcrypt = require('bcrypt');
+
 
 // Signup route
 app.post('/signup', async (req, res) => {
