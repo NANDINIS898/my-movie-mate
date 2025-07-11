@@ -12,7 +12,7 @@ function Login({ onLogin }) {
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent form from reloading the page
     try {
-      const response = await axios.post('https://movie-mate-production.up.railway.app/login', {
+      const response = await axios.post('http://localhost:5000/login', {
         email,
         password,
       });

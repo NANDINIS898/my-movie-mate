@@ -200,5 +200,21 @@
 .back-button:hover {
   background-color: #2292d8;
 }
+.playlist-movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 10px;
+}
+
+.playlist-movie-card {
+  width: 120px;
+  text-align: center;
+}
+
+.movie-poster {
+  width: 100%;
+  border-radius: 8px;
+}
 
   

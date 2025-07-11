@@ -7,7 +7,7 @@ import { AiFillHeart } from 'react-icons/ai';
 function Movies() {
   const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState('28'); // Default genre: Action
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
 
@@ -18,11 +18,11 @@ function Movies() {
     }
   }, [token, navigate]);
 
-  // Fetch movies whenever the selected genre changes
+  // ✅ Localhost backend call instead of Render URL
   useEffect(() => {
     axios
-      .get(`https://movie-mate-production.up.railway.app/api/movies/${genre}`, {
-        headers: { Authorization: `Bearer ${token}` }, // Include token
+      .get(`http://localhost:5000/api/movies/${genre}`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setMovies(response.data))
       .catch((error) => {
@@ -35,24 +35,23 @@ function Movies() {
   }, [genre, token, navigate]);
 
   const addToFavorites = async (movie) => {
-    const { id, title, poster_path, overview } = movie;  // Get the required details from the movie object
-    
+    const { id, title, poster_path, overview } = movie;
+
     try {
-      const response = await axios.post(
-        `https://movie-mate-production.up.railway.app/api/favorites`,
+      await axios.post(
+        `http://localhost:5000/api/favorites`,
         {
           movieId: id,
-          title: title,
-          poster_path: poster_path,
-          overview: overview
+          title,
+          poster_path,
+          overview,
         },
         {
           headers: {
-            Authorization: `Bearer ${token}` // Pass the token for authentication
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
-  
       alert('Movie added to favorites');
     } catch (error) {
       console.error('Failed to add movie to favorites:', error);
@@ -60,32 +59,24 @@ function Movies() {
     }
   };
 
-  const goToFavorites = () => {
-    navigate('/favorites'); // This will navigate to the Favorites page
-  };
+  const goToFavorites = () => navigate('/favorites');
+
+  const goToplaylist = () => navigate('/Playlists');
 
   const handleLogout = () => {
-    // Clear user data from localStorage
     localStorage.removeItem('username');
     localStorage.removeItem('token');
-
-    // Redirect to the home page (or login page)
-    navigate('/'); // Change this path to your home/login page
+    navigate('/');
   };
-
-  const goToplaylist=() =>{
-    navigate('/Playlists');
-
-  }
 
   return (
     <div className="Movies">
       <div className="greeting">
-        {username ? `Hi, ${username}, welcome` : 'Hi,Welcome!'}
+        {username ? `Hi, ${username}, welcome` : 'Hi, Welcome!'}
       </div>
       <h1>My Movie Mate</h1>
       <button className="favorites-button" onClick={goToFavorites}>
-        <AiFillHeart size={20} style={{ marginRight: '10px' }} /> {/* Heart icon */}
+        <AiFillHeart size={20} style={{ marginRight: '10px' }} />
         Favorites
       </button>
 
@@ -96,14 +87,11 @@ function Movies() {
         <button onClick={() => setGenre('18')}>Drama</button>
         <button onClick={() => setGenre('10749')}>Romance</button>
         <button onClick={() => setGenre('53')}>Thriller</button>
-
-        
-        <button className="my-playlist" onClick={goToplaylist}> My Playlist</button>
+        <button className="my-playlist" onClick={goToplaylist}>My Playlist</button>
         <button className="logout-button" onClick={handleLogout}>Logout</button>
       </nav>
-      
+
       <h2>Movie Recommendations</h2>
-      {/* Movie list */}
       <div className="movie-list">
         {movies.map((movie) => (
           <div key={movie.id} className="movie-card">
@@ -113,16 +101,12 @@ function Movies() {
               alt={movie.title} 
               width="200"
             />
-            <button
-              className="heart-button" 
-              onClick={() => addToFavorites(movie)} // Pass full movie object to the function
-            >
+            <button className="heart-button" onClick={() => addToFavorites(movie)}>
               ❤️ Add to Favorites
             </button>
             <p>{movie.overview}</p>
-          </div>))}
-     
-      
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -15,11 +15,10 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Clear any previous error or success message
+    // Clear previous messages
     setError('');
     setSuccess('');
 
-    // Send POST request to the backend for signup
     try {
       const response = await axios.post('http://localhost:5000/signup', {
         username,
@@ -29,19 +28,24 @@ const Signup = () => {
 
       const { token, username: responseUsername } = response.data;
 
-      // Store username and token in localStorage
-      localStorage.setItem('username', responseUsername); // Store username
-      localStorage.setItem('token', token); // Store token
+      // Save to localStorage
+      localStorage.setItem('username', responseUsername);
+      localStorage.setItem('token', token);
 
-      setSuccess(response.data); 
-      navigate('/movies');// Show success message
+      // Show success message
+      setSuccess('Signup successful! Redirecting...');
+
+      // Redirect to /movies after 1.5 seconds
+      setTimeout(() => {
+        navigate('/movies');
+      }, 1500);
     } catch (err) {
-      setError(err.response ? err.response.data : 'Error signing up'); // Show error message
+      const errMsg = err.response?.data?.message || 'Error signing up';
+      setError(errMsg);
     }
   };
 
   return (
-    
     <div className='card'>
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
@@ -64,6 +68,7 @@ const Signup = () => {
             required
           />
         </div>
+
         <div>
           <label>Password:</label>
           <input
@@ -73,8 +78,10 @@ const Signup = () => {
             required
           />
         </div>
+
         <button type="submit">Sign Up</button>
       </form>
+
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
     </div>
