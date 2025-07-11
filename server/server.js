@@ -20,6 +20,41 @@ const pool = new Pool({
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
+// TEMPORARY: Initialize DB tables on deployment
+app.get('/init-db', async (req, res) => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        username TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS favorites (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id),
+        movie_id TEXT NOT NULL,
+        title TEXT NOT NULL,
+        poster_path TEXT NOT NULL,
+        overview TEXT NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS playlists (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id),
+        name TEXT NOT NULL,
+        movies JSON NOT NULL
+      );
+    `);
+
+    res.send('✅ Database tables created successfully.');
+  } catch (err) {
+    console.error('DB init error:', err);
+    res.status(500).send('❌ Failed to initialize database.');
+  }
+});
+
 // Authentication middleware
 function authenticateToken(req, res, next) {
   const token = req.headers.authorization?.split(' ')[1];
