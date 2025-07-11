@@ -21,7 +21,7 @@ function Movies() {
   // ✅ Localhost backend call instead of Render URL
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/movies/${genre}`, {
+      .get(`https://my-movie-mate-1.onrender.com/api/movies/${genre}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setMovies(response.data))
@@ -39,7 +39,7 @@ function Movies() {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/favorites`,
+        `https://my-movie-mate-1.onrender.com/api/favorites`,
         {
           movieId: id,
           title,

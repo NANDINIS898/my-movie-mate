@@ -18,7 +18,7 @@ function Favorites() {
 
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/favorites`, {
+        const response = await axios.get(`https://my-movie-mate-1.onrender.com/api/favorites`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFavorites(response.data);
@@ -33,7 +33,7 @@ function Favorites() {
 
   const handleUnfavorite = async (movieId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/favorites/${movieId}`, {
+      await axios.delete(`https://my-movie-mate-1.onrender.com/api/favorites/${movieId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFavorites(favorites.filter(movie => movie.movie_id !== movieId));
