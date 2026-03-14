@@ -12,7 +12,7 @@ function Login({ onLogin }) {
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent form from reloading the page
     try {
-      const response = await axios.post('https://my-movie-mate-1.onrender.com/login', {
+      const response = await axios.post('https://my-movie-mate-api.onrender.com/login', {
         email,
         password,
       });
