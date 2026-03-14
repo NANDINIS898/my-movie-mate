@@ -13,8 +13,9 @@ const Playlists = () => {
 
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
-// eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     fetchPlaylists();
   }, []);
 
