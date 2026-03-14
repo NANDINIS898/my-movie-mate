@@ -20,7 +20,7 @@ const Signup = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('https://my-movie-mate-1.onrender.com/signup', {
+      const response = await axios.post('https://my-movie-mate-api.onrender.com/signup', {
         username,
         email,
         password,
