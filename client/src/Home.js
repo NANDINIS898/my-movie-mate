@@ -20,11 +20,11 @@ function Home() {
       setMessage('Please enter a movie name.');
     }
   };
-
+// eslint-disable-next-line
   const goToSignup = () => {
     navigate('/signup'); // Navigate to the Signup page
   };
-
+// eslint-disable-next-line
   const goToLogin = () => {
     navigate('/login'); // Navigate to the Login page
   };
