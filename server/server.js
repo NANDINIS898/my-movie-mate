@@ -6,13 +6,13 @@ const jwt = require('jsonwebtoken');
 const { Pool } = require('pg'); // PostgreSQL client
 const app = express();
 const port = process.env.PORT || 5000;
-const SECRET_KEY = process.env.SECRET_KEY || '343477';
+const SECRET_KEY = process.env.SECRET_KEY;
 const bcrypt = require('bcrypt');
 
 app.use(cors());
 app.use(express.json());
 
-const TMDB_API_KEY = process.env.TMDB_API_KEY || '482956122a3f6909e6d22e014cefece3';
+const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 // PostgreSQL connection
