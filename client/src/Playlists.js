@@ -19,7 +19,7 @@ const Playlists = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get('https://my-movie-mate-1.onrender.com/api/playlists', {
+        const response = await axios.get('https://my-movie-mate-api.onrender.com/api/playlists', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
