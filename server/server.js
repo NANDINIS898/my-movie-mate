@@ -106,11 +106,11 @@ app.post('/signup', async (req, res) => {
     const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: '7d' });
 
     res.status(201).json({ token, username: user.username });
-  } catch (err) {
-    console.error('Signup error:', ["POST http://localhost:5000/signup 500 (Internal Server Error"
-]);
-    res.status(500).json({ message: 'Internal server error during signup' });
-  }
+  }} catch (err) {
+    console.error('Signup error:', err.message);
+    res.status(500).json({ message: 'Internal server error during signup', error: err.message });
+}
+
 });
 
 app.post('/login', async (req, res) => {
