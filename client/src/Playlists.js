@@ -15,27 +15,25 @@ const Playlists = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetchPlaylists = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get('https://my-movie-mate-1.onrender.com/api/playlists', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setPlaylists(response.data);
+      } catch (err) {
+        setError('Error fetching playlists.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchPlaylists();
-  }, []);
-
-  const fetchPlaylists = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.get('https://my-movie-mate-1.onrender.com/api/playlists', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setPlaylists(response.data);
-    } catch (error) {
-      setError('Error fetching playlists.');
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [token]);
 
   const downloadPlaylist = (playlist) => {
     const moviesArray = Array.isArray(playlist.movies)
@@ -87,9 +85,9 @@ const Playlists = () => {
       setNewPlaylistName('');
       setNewPlaylistMovies([{ title: '', poster_path: '' }]);
       setShowCreateForm(false);
-    } catch (error) {
+    } catch (err) {
       setError('Error creating playlist.');
-      console.error(error);
+      console.error(err);
     }
   };
 
@@ -101,9 +99,9 @@ const Playlists = () => {
         },
       });
       setPlaylists(playlists.filter((playlist) => playlist.id !== id));
-    } catch (error) {
+    } catch (err) {
       setError('Error deleting playlist.');
-      console.error(error);
+      console.error(err);
     }
   };
 
