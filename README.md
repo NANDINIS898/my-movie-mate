@@ -23,7 +23,7 @@
 - **Authentication**: JWT (JSON Web Tokens)
 - **API**: TMDB (The Movie Database)
 - **Deployment**:
-  - Frontend: Netlify
+  - Frontend: Vercel
   - Backend: Render 
 
 ---
